@@ -1,9 +1,9 @@
 --- 
 - name: installing tomcat server on ubuntu
-  hosts: appservers
+  hosts: all
   become: yes
   tasks:
-    - name: installing the java 
+    - name: installing the openjdk11
       ansible.builtin.package:
         name: "{{ java_package_name}}"
         state: present
