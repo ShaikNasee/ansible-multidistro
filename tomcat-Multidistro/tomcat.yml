@@ -57,6 +57,6 @@
         dest: /etc/systemd/system/tomcat.service
         owner: "{{ user_name}}"
         group: "{{ user_group}}"
-      when: ansible_facts['ansible_distribution'] == "CentOS"
+      when: ansible_facts['Distributions'] == "CentOS"
       
 
