@@ -1,10 +1,48 @@
 ---
-- name: installing tomcat server in ubntu&centos
-  hosts: appservers
+- name: installing tomcat on ubuntu server 
+  hosts: all
   become: yes
   tasks:
-    - name: installing openjdk11
-      ansible.builtin.package: 
-        name: "{{ java_package_name }}"
+    - name: install openjdk-11
+      ansible.builtin.apt:
+        update_cache: true
+        name: "{{ java_package}}"
         state: present
-        
+    - name: creating the tomcat group
+      ansible.builtin.group:
+        name: "{{ user_group }}"
+        state: present
+    - name: creating the tomcat user 
+      ansible.builtin.user:
+        name: "{{ user_name}}"
+        group: "{{ user_group}}"
+        create_home: true
+        home: "{{user_home}}"
+        shell: "{{ user_shell}}"
+        state: present
+    - name: downloads the tomcat 
+      ansible.builtin.get_url:
+        url: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
+        dest: /tmp/apache-tomcat-10.0.27.tar.gz
+    - name: unzip the tomcat tar file
+      ansible.builtin.unarchive:
+        src: /tmp/apache-tomcat-10.0.27.tar.gz
+        remote_src: yes
+        dest: /opt/tomcat
+    - name: creating a symbolic link
+      ansible.builtin.file:
+        src: /opt/tomcat/apache-tomcat-10.0.27
+        dest: /opt/tomcat/latest
+        owner: "{{ user_name}}"
+        group: "{{ user_group}}"
+        state: link 
+    - name: granting the premissions
+      ansible.builtin.file:
+        dest: /opt/tomcat/latest
+        owner: "{{ user_name}}"
+        group: "{{ user_group}}"
+        recurse: yes
+        state: directory
+    - name: giving executable premissions
+      ansible.builtin.shell: sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh' 
+
