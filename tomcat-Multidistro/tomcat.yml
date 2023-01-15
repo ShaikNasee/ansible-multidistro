@@ -1,6 +1,6 @@
 --- 
 - name: installing tomcat server on ubuntu
-  hosts: server
+  hosts: servers
   become: yes
   tasks:
     - name: installing the java 
