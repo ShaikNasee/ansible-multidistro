@@ -44,4 +44,19 @@
         state: directory
     - name: giving executable premissions
       ansible.builtin.shell: sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh' 
+    - name: copy the tomcat.service file to  ubuntu
+      ansible.builtin.copy:
+        name: ubuntu.tomcat.service
+        dest: /etc/systemd/system/tomcat.service
+        owner: "{{ user_name}}"
+        group: "{{ user_group}}"
+      when: ansible_fact['Distributions'] == "Ubuntu"
+    - name: copy the tomcat.servie file to centos
+      ansible.builtin.copy:
+        name: ubuntu.tomcat.service
+        dest: /etc/systemd/system/tomcat.service
+        owner: "{{ user_name}}"
+        group: "{{ user_group}}"
+      when: ansible_fact['ansible_distribution'] == "CentOS"
+      
 
