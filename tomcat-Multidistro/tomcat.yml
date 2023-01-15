@@ -50,13 +50,13 @@
         dest: /etc/systemd/system/tomcat.service
         owner: "{{ user_name}}"
         group: "{{ user_group}}"
-      when: ansible_fact['Distributions'] == "Ubuntu"
+      when: ansible_facts['Distributions'] == "Ubuntu"
     - name: copy the tomcat.servie file to centos
       ansible.builtin.copy:
         name: ubuntu.tomcat.service
         dest: /etc/systemd/system/tomcat.service
         owner: "{{ user_name}}"
         group: "{{ user_group}}"
-      when: ansible_fact['ansible_distribution'] == "CentOS"
+      when: ansible_facts['ansible_distribution'] == "CentOS"
       
 
