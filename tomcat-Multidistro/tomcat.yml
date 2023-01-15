@@ -1,11 +1,10 @@
---- 
-- name: installing tomcat server on ubuntu
-  hosts: all
+---
+- name: installing tomcat server in ubntu&centos
+  hosts: appservers
   become: yes
   tasks:
-    - name: installing the openjdk11
-      ansible.builtin.package:
-        name: "{{ java_package_name}}"
+    - name: installing openjdk11
+      ansible.builtin.package: 
+        name: "{{ java_package_name }}"
         state: present
-     
         
