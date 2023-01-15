@@ -3,10 +3,10 @@
 172.31.12.31 java_package_name=java-11-openjdk-devel
 
 [servers:vars]
-user_name=tomcat
-user_group=tomcat
-user_home=/opt/tomcat
-user_shell=/bin/false/
-service_name=tomcat.service
+user_name="tomcat"
+user_group="tomcat"
+user_home="/opt/tomcat"
+user_shell="/bin/false/"
+service_name="tomcat.service"
 
 
