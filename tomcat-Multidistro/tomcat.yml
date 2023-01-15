@@ -6,7 +6,7 @@
     - name: install openjdk-11
       ansible.builtin.apt:
         update_cache: true
-        name: "{{ java_package}}"
+        name: "{{ java_package_name}}"
         state: present
     - name: creating the tomcat group
       ansible.builtin.group:
