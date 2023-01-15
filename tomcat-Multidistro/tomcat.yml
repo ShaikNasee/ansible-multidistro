@@ -60,7 +60,7 @@
       when: ansible_facts['distribution'] == "CentOS"
     - name: reload the tomcat 
       ansible.builtin.systemd:
-        name: "{{ tomcat.service }}"
+        name: "{{ service_service }}"
         state: restarted
       
 
