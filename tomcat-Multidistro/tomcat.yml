@@ -21,11 +21,11 @@
         state: present
     - name: tomcat stats
       ansible.builtin.stat:
-        path: "{{ user_home}}/latest/bin/startup.sh"
+        path: opt/tomcat/latest/bin/startup.sh
       registry: tomcat_startup
     - name: unzip the tomcat tar file
       ansible.builtin.unarchive:
-        src: "https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz"
+        src: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz
         remote_src: yes
         dest: "{{ user_home }}"
       when: not tomcat_startup.stat.exists
