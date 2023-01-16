@@ -31,7 +31,7 @@
       ansible.builtin.unarchive:
         src: /tmp/apache-tomcat-10.0.27.tar.gz
         remote_src: yes
-        dest: /opt/tomcat
+        dest: "{{ user_home}}"
       when: not  tomcat_startup.stat.exists
     - name: creating a symbolic link
       ansible.builtin.file:
