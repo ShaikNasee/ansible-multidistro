@@ -48,7 +48,8 @@
         recurse: yes
         state: directory
     - name: giving executable premissions
-      ansible.builtin.shell: sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh' 
+      ansible.builtin.shell: sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
+      hen: not  tomcat_startup.stat.exists 
     - name: copy the tomcat.service file to  ubuntu
       ansible.builtin.copy:
         src: ubuntu.tomcat.service
