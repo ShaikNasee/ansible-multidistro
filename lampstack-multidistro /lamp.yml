@@ -1,57 +1,58 @@
---- 
-- name: installing apache server on ubuntu 
+---
+- name: installing tomcat server on upuntu&centos
   hosts: all
   become: yes
-  tasks: 
-    - name: install apache on ubuntu
-      ansible.builtin.package:
-        name: "{{ ubuntu_package_name}}"
+  vars:
+    - package_name: apache2
+  tasks:
+    - name: installing apache2 on ubuntu
+      ansible.builtin.apt:
+        name: apache2
         update_cache: true
         state: present
+      when: ansible_facts['distribution'] == "Ubuntu"
       notify:
-      - restart and reload tomcat
-    - name: install php modules
-      ansible.builtin.apt:
-        name: 
-          - php
-          - ibapache2-mod-php
-          - php-mysql
-        state: present
-    - name: copy the info.php
-      ansible.builtin.copy:
-        src: info.php
-        dest: /var/www/html/info.php
-      when: tomcat_facts ['distribution'] == "Ubuntu"
-      notify:
-        - restart and reload tomcat      
-    - name: installing httpd on centos
+        - enable and restart apache2
+    - name: installing apache on centos
       ansible.builtin.yum:
-        name: "{{ centos_package_name }}"
-        update_cache: true 
+        name: httpd
         state: present
+      when: ansible_facts['distribution'] == "CentOs"
+      notify:
+        - enable and restart httpd
     - name: installing php modules
-      ansible.builtin.package:
-        name: centos_package_name
+      ansible.builtin.apt:
+        name:
+          - php
+          - libapache2-mod-php
+          - php-mysql
+      when: ansible_facts['distribution'] == "Ubuntu"
+      notify:
+        - enable and restart httpd
+    - name: installing php modules in centos
+      ansible.builtin.yum:
+        name: 
           - php
           - php-mysqlnd
         state: present
-    - name: copy the info.php file 
+      when: ansible_facts['distribution'] == "CentOs"
+      notify:
+        - enable and restart httpd
+    - name: copy info.php
       ansible.builtin.copy:
         src: info.php
         dest: /var/www/html/info.php
-      when: tomcat_facts['distribution'] == "CentOs"
-      notify:
-        - restart and reload httpd
-  handlers: 
-    - name: restart and reload tomcat
+  handlers:
+    - name: enable and restart apache2
       ansible.builtin.systemd:
         name: apache2
         deamon_reload: true
         enabled: true
         state: restarted
-    - name: restart and reload httpd
+    - name: enable and restart httpd
       ansible.builtin.systemd:
         name: httpd
         deamon_reload: true
         enabled: true
         state: restarted
+
