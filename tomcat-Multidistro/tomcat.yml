@@ -84,6 +84,9 @@
         dest: /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
         owner: "{{ user_name}}"
         group: "{{ user_group}}" 
+      notify:
+        - restart tomcat
+  handlers:
     - name: restart tomcat
       ansible.builtin.systemd:
         name: "{{ service_name }}"
