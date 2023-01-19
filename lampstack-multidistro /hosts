@@ -1,0 +1,5 @@
+[appserver]
+192.178.1.0 ubuntu_package_name: apache
+172.16.0.1  centos_package_name: httpd
+
+

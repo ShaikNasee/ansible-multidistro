@@ -1,0 +1,57 @@
+--- 
+- name: installing apache server on ubuntu 
+  hosts: all
+  become: yes
+  tasks: 
+    - name: install apache on ubuntu
+      ansible.builtin.package:
+        name: "{{ ubuntu_package_name}}"
+        update_cache: true
+        state: present
+      notify:
+      - restart and reload tomcat
+    - name: install php modules
+      ansible.builtin.apt:
+        name: 
+          - php
+          - ibapache2-mod-php
+          - php-mysql
+        state: present
+    - name: copy the info.php
+      ansible.builtin.copy:
+        src: info.php
+        dest: /var/www/html/info.php
+      when: tomcat_facts ['distribution'] == "Ubuntu"
+      notify:
+        - restart and reload tomcat      
+    - name: installing httpd on centos
+      ansible.builtin.yum:
+        name: "{{ centos_package_name }}"
+        update_cache: true 
+        state: present
+    - name: installing php modules
+      ansible.builtin.package:
+        name: centos_package_name
+          - php
+          - php-mysqlnd
+        state: present
+    - name: copy the info.php file 
+      ansible.builtin.copy:
+        src: info.php
+        dest: /var/www/html/info.php
+      when: tomcat_facts['distribution'] == "CentOs"
+      notify:
+        - restart and reload httpd
+  handlers: 
+    - name: restart and reload tomcat
+      ansible.builtin.systemd:
+        name: apache2
+        deamon_reload: true
+        enabled: true
+        state: restarted
+    - name: restart and reload httpd
+      ansible.builtin.systemd:
+        name: httpd
+        deamon_reload: true
+        enabled: true
+        state: restarted
