@@ -54,7 +54,7 @@
         group: "{{ user_group}}"
       when: ansible_facts['distribution'] == "Ubuntu"
       notify:
-        - reload the tomcat
+        - enable and reload the tomcat 
     - name: copy the tomcat.servie file to centos
       ansible.builtin.copy:
         src: ubuntu.tomcat.service
@@ -89,7 +89,7 @@
       ansible.builtin.systemd:
         name: "{{ service_name }}"
         state: restarted
-    - name: reload the tomcat 
+    - name: enable and reload the tomcat 
       ansible.builtin.systemd:
         name: "{{ service_name }}"
         daemon_reload: true
