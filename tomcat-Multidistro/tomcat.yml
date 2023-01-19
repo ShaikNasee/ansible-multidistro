@@ -60,12 +60,8 @@
         owner: "{{ user_name}}"
         group: "{{ user_group}}"
       when: ansible_facts['distribution'] == "CentOS"
-    - name: reload the tomcat 
-      ansible.builtin.systemd:
-        name: "{{ service_name }}"
-        daemon_reload: true
-        enabled: true
-        state: started
+      notify: 
+        - reload the tomcat
     - name: copy the user.xml file
       ansible.builtin.copy:
         src: tomcat-users.xml
@@ -90,4 +86,10 @@
     - name: restart tomcat
       ansible.builtin.systemd:
         name: "{{ service_name }}"
+        state: restarted
+    - name: reload the tomcat 
+      ansible.builtin.systemd:
+        name: "{{ service_name }}"
+        daemon_reload: true
+        enabled: true
         state: restarted
