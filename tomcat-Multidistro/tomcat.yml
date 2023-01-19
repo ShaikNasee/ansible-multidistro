@@ -53,6 +53,8 @@
         owner: "{{ user_name}}"
         group: "{{ user_group}}"
       when: ansible_facts['distribution'] == "Ubuntu"
+      notify:
+        - reload the tomcat
     - name: copy the tomcat.servie file to centos
       ansible.builtin.copy:
         src: ubuntu.tomcat.service
