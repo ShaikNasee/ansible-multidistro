@@ -10,4 +10,4 @@
       loop: "{{ packages}}"
     - name: debig other variables 
       ansible.builtin.debug:
-        var: job
+        var: Job
