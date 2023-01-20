@@ -1,2 +1,2 @@
 [local]
-localhost packages='["git", "nano", "net-tools", "tree"]'
+localhost 
