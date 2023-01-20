@@ -4,6 +4,7 @@
   tasks:
     - name: installing utilities softwares
       ansible.builtin.apt:
-        name: "{{ packages }}"
+        name: "{{ item }}"
         state: present
       become: yes
+      loop: "{{ packages}}"
