@@ -1,6 +1,6 @@
 ---
 - name: installing utilities softwared on localhost
-  hosts: all 
+  hosts: local
   tasks:
     - name: installing utilities softwares
       ansible.builtin.apt:
