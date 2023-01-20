@@ -4,11 +4,6 @@
   tasks:
     - name: installing utilities softwares
       ansible.builtin.apt:
-        name: "{{ item }}"
+        name: "{{ packages }}"
         state: present
       become: yes
-      loop:
-        - git 
-        - tree 
-        - nano 
-        - net-tools

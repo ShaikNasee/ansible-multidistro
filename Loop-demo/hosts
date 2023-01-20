@@ -1,1 +1,1 @@
-localhost 
+localhost packages='["git", "nano", "nte-tools", "tree"]'
