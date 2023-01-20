@@ -1,0 +1,13 @@
+---
+- name: installing utilities softwared on localhost
+  hosts: all 
+  tasks:
+    - name: installing utilities softwares
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - git 
+        - tree 
+        - nano 
+        - net-tools
