@@ -5,6 +5,7 @@
     - name: installing utilities softwares
       ansible.builtin.apt:
         name: "{{ item }}"
+        become: yes
         state: present
       loop:
         - git 
