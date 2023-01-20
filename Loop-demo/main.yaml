@@ -9,5 +9,5 @@
       become: yes
       loop: "{{ packages}}"
     - name: debig other variables 
-      ansible.builtin.debig:
+      ansible.builtin.debug:
         var: job
