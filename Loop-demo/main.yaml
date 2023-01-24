@@ -11,3 +11,6 @@
     - name: debig other variables 
       ansible.builtin.debug:
         var: Job
+    - name: special variables in ansible 
+      ansible.builtin.debug:
+        var: inventory_dir
