@@ -14,3 +14,6 @@
     - name: special variables in ansible 
       ansible.builtin.debug:
         var: inventory_dir
+    - name: name of the inventory file 
+      ansible.builtin.debug:
+        var: inventory_file
