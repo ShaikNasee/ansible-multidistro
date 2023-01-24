@@ -17,3 +17,6 @@
     - name: name of the inventory file 
       ansible.builtin.debug:
         var: inventory_file
+    - name: user of ansible
+      ansible.builtin.debug:
+        var: ansible_user
