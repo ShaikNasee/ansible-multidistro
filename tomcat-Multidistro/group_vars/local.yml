@@ -1,0 +1,7 @@
+user_name: tomcat
+user_group: tomcat
+user_home: /opt/tomcat
+user_shell: /bin/false/
+service_name: tomcat.service
+tomcat_user_name: admin
+tomcat_user_password: admin123
