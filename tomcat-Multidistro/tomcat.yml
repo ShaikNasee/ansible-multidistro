@@ -4,7 +4,7 @@
   become: yes
   tasks:
     - name: install openjdk-11
-      ansible.builtin.apt:
+      ansible.builtin.package:
         name: "{{java_package_name}}"
         state: present
     - name: creating the tomcat group
