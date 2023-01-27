@@ -63,7 +63,7 @@
         group: "{{ user_group}}"
       when: ansible_facts['distribution'] == "CentOS"
       notify: 
-        - reload the tomcat
+        - enable and reload the tomcat 
     - name: copy the user.xml file
       ansible.builtin.template:
         src: tomcat-users.xml.j2
