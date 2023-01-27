@@ -9,7 +9,7 @@
         state: present
     - name: creating the tomcat group
       ansible.builtin.group:
-        name: "{{ user_group }}"
+        name: "{{user_group}}"
         state: present
     - name: creating the tomcat user 
       ansible.builtin.user:
@@ -63,6 +63,7 @@
         group: "{{ user_group}}"
       when: ansible_facts['distribution'] == "CentOS"
       notify: 
+        - restart tomcat
         - enable and reload the tomcat 
     - name: copy the user.xml file
       ansible.builtin.template:
