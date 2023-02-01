@@ -55,6 +55,15 @@
       when: ansible_facts['distribution'] == "Ubuntu"
       notify:
         - enable and reload the tomcat  
+    - name: copy the tomcat.service file 
+      ansible.builtin.template:
+        src: tomcat.service.j2
+        dest: /etc/systemd/system/tomcat.service
+        owner: "{{ user_name}}"
+        group: "{{ user_group}}"
+      when: ansible_facts['distribution'] == "Centos"
+      notify:
+        - enable and reload the tomcat  
     - name: copy the user.xml file
       ansible.builtin.template:
         src: tomcat-users.xml.j2
