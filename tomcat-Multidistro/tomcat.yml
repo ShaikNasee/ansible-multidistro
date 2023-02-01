@@ -45,6 +45,7 @@
         state: directory
     - name: giving executable premissions
       ansible.builtin.shell: sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
+      when: not  tomcat_startup.stat.exists
     - name: copy the tomcat.service file 
       ansible.builtin.template:
         src: tomcat.service.j2
