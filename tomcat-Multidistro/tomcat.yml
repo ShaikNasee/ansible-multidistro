@@ -45,16 +45,7 @@
         state: directory
     - name: giving executable premissions
       ansible.builtin.shell: sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
-      when: not  tomcat_startup.stat.exists 
-    - name: copy the tomcat.service file 
-      ansible.builtin.template:
-        src: tomcat.service.j2
-        dest: /etc/systemd/system/tomcat.service
-        owner: "{{ user_name}}"
-        group: "{{ user_group}}"
-      when: ansible_facts['distribution'] == "Ubuntu"
-      notify:
-        - enable and reload the tomcat  
+      when: not  tomcat_startup.stat.exists
     - name: copy the tomcat.service file 
       ansible.builtin.template:
         src: tomcat.service.j2
@@ -64,6 +55,15 @@
       when: ansible_facts['distribution'] == "Centos"
       notify:
         - enable and reload the tomcat  
+    - name: copy the tomcat.service file 
+      ansible.builtin.template:
+        src: tomcat.service.j2
+        dest: /etc/systemd/system/tomcat.service
+        owner: "{{ user_name}}"
+        group: "{{ user_group}}"
+      when: ansible_facts['distribution'] == "Ubuntu"
+      notify:
+        - enable and reload the tomcat 
     - name: copy the user.xml file
       ansible.builtin.template:
         src: tomcat-users.xml.j2
