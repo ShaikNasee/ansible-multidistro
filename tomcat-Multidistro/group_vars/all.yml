@@ -6,3 +6,5 @@ user_shell: /bin/false/
 service_name: tomcat.service
 tomcat_user_name: admin
 tomcat_user_password: admin123
+tomcat_java_home: JAVA_HOME=/usr/lib/jvm/jre
+tomcat_java_opts: JAVA_OPTS=-Djava.security.egd=file:///dev/urandom
