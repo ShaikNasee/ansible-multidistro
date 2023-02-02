@@ -1,8 +1,8 @@
 ---
- - name: installing tomcat  
-   hosts: all
-   become: yes
-   tasks:
+- name: installing tomcat on ubuntu server 
+  hosts: all
+  become: yes
+  tasks:
     - name: install openjdk-11
       ansible.builtin.package:
         name: "{{java_package_name}}"
@@ -72,7 +72,7 @@
         - /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml 
       notify:
         - restart tomcat
-    - handlers:
+  handlers:
     - name: restart tomcat
       ansible.builtin.systemd:
         name: "{{ service_name }}"
