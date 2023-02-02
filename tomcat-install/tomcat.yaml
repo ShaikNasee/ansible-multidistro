@@ -1,0 +1,71 @@
+---
+- name: installing tomcat on ubuntu server 
+  hosts: all
+  become: yes
+  tasks:
+    - name: install java 11 on ubuntu
+      ansible.builtin.apt:
+        name: openjdk-11-jdk
+        update_cache: true
+        state: present
+    - name: creating a tomcat user-group  
+      ansible.builtin.group:
+        name: tomcat
+        state: present
+    - name: creating the tomcat user 
+      ansible.builtin.user:
+        name: tomcat
+        group: tomcat
+        create_home: true
+        home: /opt/tomcat
+        shell: bin/false
+        state: present
+    - name: extract the tomcat file to home directory  
+      ansible.builtin.unarchive:
+        src: wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz  
+        dest: /opt/tomcat
+        remote_src: true
+    - name: create a symbolic link of tomcat 
+      ansible.builtin.apt:
+        src: /opt/tomcat
+        dest: /opt/tomcat/latest
+        owner: tomcat
+        group: tomcat
+        state: link 
+    - name: change the ownership of directory
+      ansible.builtin.apt:
+        dest: /opt/tomcat/
+        owner: tomcat
+        group: tomcat
+        recurse: true
+        state: directory
+    - name: grant executable permission to shel file 
+      ansible.builtin.shell: sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
+    - name: create a systemd file
+      ansible.builtin.apt:
+        name: tomcat.service 
+        dest: /etc/systemd/system/tomcat.service
+        owner: tomcat
+        group: tomcat
+        remote_src: true
+        state: touch 
+    - name: reload the tomcat deamon 
+      ansible.builtin.systemd:
+        name: apache2 
+        daemon_reload: true
+        enabled: true
+        state: restarted 
+    - name: creating tomcat user.xml file
+      ansible.builtin.apt:
+        name: tomcat.service 
+        dest: /etc/systemd/system/tomcat.service
+        owner: tomcat
+        group: tomcat
+        remote_src: true
+        state: touch 
+
+
+
+
+
+        
