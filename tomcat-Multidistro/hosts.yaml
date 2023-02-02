@@ -2,12 +2,10 @@ all:
   children:
     appservers:
       hosts:
-        172.31.2.132:
-          java_package_name: openjdk-11-jdk
         172.31.5.253:
-          java_package_name: java-1.8.0-openjdk-devel
-          tomcat_java_home: /usr/lib/jvm/java-11-openjdk-amd64
-          tomcat_java_opts: -Djava.security.egd=file:///dev/urandom -Djava.awt.headless=true
+          java_package_name: openjdk-11-jdk
+        
+          
           
           
         
