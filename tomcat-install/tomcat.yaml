@@ -22,7 +22,7 @@
         state: present
     - name: extract the tomcat file to home directory  
       ansible.builtin.unarchive:
-        src: wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz  
+        url: wget https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz  
         dest: /opt/tomcat
         remote_src: true
     - name: create a symbolic link of tomcat 
