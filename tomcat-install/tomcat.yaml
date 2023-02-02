@@ -33,7 +33,7 @@
         group: tomcat
         state: link
     - name: change the ownership of directory
-      ansible.builtin.apt:
+      ansible.builtin.file:
         dest: /opt/tomcat/
         owner: tomcat
         group: tomcat
