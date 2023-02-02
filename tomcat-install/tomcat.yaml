@@ -48,7 +48,7 @@
         owner: tomcat
         group: tomcat
         remote_src: true
-        state: touch 
+        state: present
     - name: reload the tomcat deamon 
       ansible.builtin.systemd:
         name: apache2 
