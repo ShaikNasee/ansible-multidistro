@@ -48,7 +48,6 @@
         dest: /etc/systemd/system/tomcat.service
         owner: tomcat
         group: tomcat
-        state: present
 
 
 
