@@ -27,11 +27,11 @@
         remote_src: true
     - name: create a symbolic link of tomcat 
       ansible.builtin.apt:
-        src: /opt/tomcat/apache-tomcat-10.0.27.tar.gz 
+        src: /opt/tomcat/apache-tomcat-10.0.27.tar.gz
         dest: /opt/tomcat/latest
-        owner: tomcat
-        group: tomcat
-        state: "link" 
+        owner: "{{ user_name}}"
+        group: "{{ user_group}}"
+        state: link 
     - name: change the ownership of directory
       ansible.builtin.apt:
         dest: /opt/tomcat/
