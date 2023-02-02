@@ -31,7 +31,7 @@
         dest: /opt/tomcat/latest
         owner: tomcat
         group: tomcat
-        state: link 
+        state: "link" 
     - name: change the ownership of directory
       ansible.builtin.apt:
         dest: /opt/tomcat/
