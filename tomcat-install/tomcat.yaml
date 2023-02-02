@@ -39,4 +39,8 @@
         group: tomcat
         recurse: true
         state: directory
+    - name: add executable permissions to shell file
+      ansible.builtin.command:
+        cmd: sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
+         
 
