@@ -50,7 +50,7 @@
         state: directory
     - name: reload the tomcat deamon 
       ansible.builtin.systemd:
-        name: apache2 
+        name: tomcat 
         daemon_reload: true
         enabled: true
         state: restarted 
