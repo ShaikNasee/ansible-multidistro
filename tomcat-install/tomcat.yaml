@@ -9,7 +9,8 @@
     tomcat_shell: /bin/false
     tomcat_home: /opt/tomcat
     tomcat_service: tomcat.service
-
+    tomcat_version: "10.0.27"
+    major_version: "10"
   tasks:
     - name: install java 11 on ubuntu
       ansible.builtin.apt:
@@ -30,7 +31,7 @@
         state: present
     - name: download and untar tomcat 10.0..27
       ansible.builtin.unarchive:
-        src: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz  
+        src: "https://dlcdn.apache.org/tomcat/tomcat-{{major_version}}/v{{tomcat_version}}/bin/apache-tomcat-{{tomcat_version}}.tar.gz"  
         remote_src: true
         dest: /opt/tomcat
     - name: create a symbolic link 
