@@ -34,7 +34,7 @@
         state: link
     - name: change the ownership 
       ansible.builtin.file:
-        src: /opt/tomcat
+        path: /opt/tomcat
         owner: tomcat
         group: tomcat
         recurse: true
