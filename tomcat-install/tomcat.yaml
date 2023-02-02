@@ -43,12 +43,12 @@
       ansible.builtin.command:
         cmd: sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
     - name: create a tomcat.service file 
-      ansible.builtin.file:
+      ansible.builtin.copy:
         src: tomcat.service
         dest: /etc/systemd/system/tomcat.service
         owner: tomcat
         group: tomcat
-        state: file
-        
+        state: present
+
 
 
