@@ -20,7 +20,7 @@
         home: /opt/tomcat
         shell: /bin/false
         state: present
-    - name: download tomcat 10.0..27
+    - name: download and untar tomcat 10.0..27
       ansible.builtin.unarchive:
         src: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz  
         remote_src: true
