@@ -31,4 +31,5 @@
         dest: /opt/tomcat/latest
         owner: tomcat
         group: tomcat
+        recurse: true 
         state: link
