@@ -56,11 +56,11 @@
         state: restarted
     - name: copy the user.xml file
       ansible.builtin.copy:
-      src: tomcat.user.xml
-      dest: /opt/tomcat/latest/conf/tomcat-users.xml
-      owner: tomcat
-      group: tomcat
-      
+        src: tomcat.user.xml
+        dest: /opt/tomcat/latest/conf/tomcat-users.xml
+        owner: tomcat
+        group: tomcat
+
 
 
 
