@@ -2,7 +2,7 @@ all:
   children:
     appservers:
       hosts:
-        172.31.5.253:
+        172.31.2.132:
           java_package_name: openjdk-11-jdk
         
           
