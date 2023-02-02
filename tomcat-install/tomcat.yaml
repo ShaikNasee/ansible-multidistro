@@ -60,8 +60,4 @@
         dest: /opt/tomcat/latest/conf/tomcat-users.xml
         owner: tomcat
         group: tomcat
-
-
-
-
-
+        
