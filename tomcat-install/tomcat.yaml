@@ -62,13 +62,13 @@
         group: tomcat
     - name: copy the manager context file 
       ansible.builtin.copy:
-        name: context.xml
+        src: context.xml
         dest: /opt/tomcat/latest/webapps/manager/META-INF/context.xml
         owner: tomcat
         group: tomcat
     - name: copy the hostmanager context file 
       ansible.builtin.copy:
-        name: hostmanager-context.xml
+        src: hostmanager-context.xml
         dest: /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
         owner: tomcat
         group: tomcat
