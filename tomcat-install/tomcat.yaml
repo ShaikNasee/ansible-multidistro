@@ -42,5 +42,13 @@
     - name: add executable permissions to shell file
       ansible.builtin.command:
         cmd: sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
-         
+    - name: create a tomcat.service file 
+      ansible.builtin.file:
+        src: tomcat.service
+        dest: /etc/systemd/system/tomcat.service
+        owner: tomcat
+        group: tomcat
+        state: file
+        
+
 
