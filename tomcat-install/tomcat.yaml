@@ -25,3 +25,10 @@
         src: https://dlcdn.apache.org/tomcat/tomcat-10/v10.0.27/bin/apache-tomcat-10.0.27.tar.gz  
         remote_src: true
         dest: /opt/tomcat
+    - name: create a symbolic link 
+      ansible.builtin.file:
+        src: /opt/tomcat/apache-tomcat-10.0.27
+        dest: /opt/tomcat/latest
+        owner: tomcat
+        group: tomcat
+        state: link
