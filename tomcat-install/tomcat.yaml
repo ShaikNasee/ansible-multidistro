@@ -42,7 +42,7 @@
     - name: grant executable permission to shel file 
       ansible.builtin.shell: sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
     - name: create a systemd file
-      ansible.builtin.apt:
+      ansible.builtin.file:
         name: tomcat.service 
         dest: /etc/systemd/system/tomcat.service
         owner: tomcat
