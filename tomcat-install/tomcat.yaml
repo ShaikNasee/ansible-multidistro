@@ -33,10 +33,10 @@
       ansible.builtin.unarchive:
         src: "https://dlcdn.apache.org/tomcat/tomcat-{{major_version}}/v{{tomcat_version}}/bin/apache-tomcat-{{tomcat_version}}.tar.gz"  
         remote_src: true
-        dest: /opt/tomcat
+        dest: "{{tomcat_home}}"
     - name: create a symbolic link 
       ansible.builtin.file:
-        src: "{{tomcat_home}}/apache-tomcat-10.0.27"
+        src: "{{tomcat_home}}/apache-tomcat-{{tomcat_version}}"
         dest: /opt/tomcat/latest
         owner: "{{tomcat_user}}"
         group: "{{tomcat_group}}" 
