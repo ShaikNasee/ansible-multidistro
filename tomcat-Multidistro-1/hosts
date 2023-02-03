@@ -11,4 +11,3 @@ tomcat_home=/opt/tomcat
 tomcat_service=tomcat.service
 tomcat_version="10.0.27"
 major_version="10"
-tomcat_startup: /opt/tomcat/latest/bin/startup.sh
