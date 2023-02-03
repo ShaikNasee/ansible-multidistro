@@ -46,6 +46,7 @@
     - name: add executable permissions to shell file
       ansible.builtin.command:
         cmd: sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
+      when: not tomcat_startup.stat.exists
     - name: copy centos.tomcat.service
       ansible.builtin.copy:
         src: centos.tomcat.service
