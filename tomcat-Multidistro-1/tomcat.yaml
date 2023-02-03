@@ -55,3 +55,10 @@
         owner: "{{tomcat_user}}"
         group: "{{ tomcat_group}}"
       when: ansible_facts['distribution'] == "Ubuntu"
+    - name: reload deamon and start tomcat
+      ansible.builtin.systemd:
+        name: "{{ tomcat_service}}"
+        daemon_reload: true
+        enabled: true
+        state: restarted
+        
