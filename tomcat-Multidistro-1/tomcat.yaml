@@ -3,6 +3,9 @@
   hosts: all
   become: yes    
   tasks:
+    - name: update th packages in ubuntu
+      ansible.builtin.apt:
+        update_cache: true
     - name: install java 11 on ubuntu
       ansible.builtin.apt:
         name: "{{java_package_name}}"
