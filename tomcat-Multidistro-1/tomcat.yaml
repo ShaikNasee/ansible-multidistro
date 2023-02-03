@@ -1,6 +1,6 @@
 ---
 - name: installing tomcat 10 on ubuntu server 22.0
-  hosts: all
+  hosts: appserver
   become: yes    
   tasks:
     - name: update th packages in ubuntu
