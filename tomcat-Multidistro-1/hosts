@@ -1,6 +1,6 @@
 [appserver]
-13.233.113.1 java_package_name=openjdk-11-jdk
-172.31.7.94  java_package_name=java-11-openjdk-devel
+172.31.37.70 java_package_name=openjdk-11-jdk
+172.31.7.94 java_package_name=java-11-openjdk-devel
 
 
 [appserver:vars]
