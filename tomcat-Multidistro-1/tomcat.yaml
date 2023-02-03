@@ -60,5 +60,5 @@
         name: "{{ tomcat_service}}"
         daemon_reload: true
         enabled: true
-        state: restarted
+        state: started
         
