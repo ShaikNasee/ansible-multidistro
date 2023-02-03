@@ -19,7 +19,7 @@
         home: "{{tomcat_home}}"
         shell: "{{tomcat_shell}}"
         state: present
-    - name: download and untar tomcat 10.0..27
+    - name: extract tomcat 10.0..27
       ansible.builtin.unarchive:
         src: "https://dlcdn.apache.org/tomcat/tomcat-{{major_version}}/v{{tomcat_version}}/bin/apache-tomcat-{{tomcat_version}}.tar.gz"  
         remote_src: true
