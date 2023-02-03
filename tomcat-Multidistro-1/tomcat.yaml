@@ -8,6 +8,6 @@
         update_cache: true
       when: ansible_facts['distribution'] == "Ubuntu"
     - name: install java 11 on ubuntu
-      ansible.builtin.apt:
+      ansible.builtin.package:
         name: "{{java_package_name}}"
         state: present
