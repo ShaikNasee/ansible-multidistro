@@ -1,0 +1,9 @@
+---
+- name: installing tomcat 10 on ubuntu server 22.0
+  hosts: all
+  become: yes    
+  tasks:
+    - name: install java 11 on ubuntu
+      ansible.builtin.apt:
+        name: "{{java_package_name}}"
+        state: present
