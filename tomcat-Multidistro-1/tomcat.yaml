@@ -41,3 +41,17 @@
     - name: add executable permissions to shell file
       ansible.builtin.command:
         cmd: sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
+    - name: copy centos.tomcat.service
+      ansible.builtin.copy:
+        src: centos.tomcat.service
+        path: /etc/systemd/system/tomcat.service
+        owner: "{{tomcat_user}}"
+        group: "{{ tomcat_group}}"
+      when: ansible_facts['distribution'] == "CentOS"
+    - name: copy ubuntu.tomcat.service
+      ansible.builtin.copy:
+        src: ubuntu.tomcat.service
+        path: /etc/systemd/system/tomcat.service
+        owner: "{{tomcat_user}}"
+        group: "{{ tomcat_group}}"
+      when: ansible_facts['distribution'] == "Ubuntu"
