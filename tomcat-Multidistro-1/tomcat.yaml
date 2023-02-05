@@ -70,7 +70,7 @@
         daemon_reload: true
         enabled: true
         state: started
-    - name: copy the tomcat.user.xml file 
+    - name: copy the tomcat-user.xml file 
       ansible.builtin.copy:
         src: tomcat-user.xml
         dest: /opt/tomcat/latest/conf/tomcat-users.xml
