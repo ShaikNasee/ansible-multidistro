@@ -49,7 +49,7 @@
        owner: "{{tomcat_user}}"
        group: "{{tomcat_group}}"
        mode: 764
-       state: file
+       state: directory
     - name: copy centos.tomcat.service
       ansible.builtin.copy:
         src: centos.tomcat.service
