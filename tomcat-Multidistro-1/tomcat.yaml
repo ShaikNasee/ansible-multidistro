@@ -84,7 +84,7 @@
         group: "{{tomcat_group}}"
     - name: copy the hsotmanager-context.xml file 
       ansible.builtin.copy:
-        src: hsotmanager-context.xml
+        src: hostmanager-context.xml
         dest: /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
         owner: "{{tomcat_user}}"
         group: "{{tomcat_group}}"
