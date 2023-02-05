@@ -43,10 +43,12 @@
         group: "{{tomcat_group}}"
         recurse: true
         state: directory
-    - name: add executable permissions to shell file
-      ansible.builtin.command:
-        cmd: sudo sh -c 'chmod +x /opt/tomcat/latest/bin/*.sh'
-      when: not tomcat_startup.stat.exists
+    - name: giving executable permission to shell files 
+      ansible.builtin.file:
+       path: /opt/tomcat/latest/bin/*.sh
+       owner: "{{tomcat_user}}"
+       group: "{{tomcat_group}}"
+       mode: "764"
     - name: copy centos.tomcat.service
       ansible.builtin.copy:
         src: centos.tomcat.service
@@ -68,3 +70,4 @@
         enabled: true
         state: started
         
+    
