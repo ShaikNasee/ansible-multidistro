@@ -76,7 +76,6 @@
         dest: /opt/tomcat/latest/conf/tomcat-users.xml
         owner: "{{tomcat_user}}"
         group: "{{tomcat_group}}"
-        remote_src: true
     - name: copy the context.xml file 
       ansible.builtin.copy:
         src: context.xml
