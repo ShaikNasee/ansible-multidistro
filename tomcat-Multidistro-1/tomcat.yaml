@@ -64,12 +64,8 @@
         owner: "{{tomcat_user}}"
         group: "{{ tomcat_group}}"
       when: ansible_facts['distribution'] == "Ubuntu"
-    - name: reload deamon and start tomcat
-      ansible.builtin.systemd:
-        name: "{{ tomcat_service}}"
-        daemon_reload: true
-        enabled: true
-        state: started
+      notify:
+        - reload deamon and start tomcat
     - name: copy the tomcat-user.xml file 
       ansible.builtin.copy:
         src: tomcat-users.xml
@@ -87,7 +83,16 @@
         src: hostmanager-context.xml
         dest: /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
         owner: "{{tomcat_user}}"
-        group: "{{tomcat_group}}"
+        group: "{{tomcat_group}}" 
+      notify:
+        - restart tomcat
+  handlers:
+    - name: reload deamon and start tomcat
+      ansible.builtin.systemd:
+        name: "{{ tomcat_service}}"
+        daemon_reload: true
+        enabled: true
+        state: started
     - name: restart tomcat 
       ansible.builtin.systemd:
         name: "{{tomcat_service}}"
