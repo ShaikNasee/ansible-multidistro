@@ -48,7 +48,7 @@
        path: /opt/tomcat/latest/bin/*.sh
        owner: "{{tomcat_user}}"
        group: "{{tomcat_group}}"
-       mode: 764
+       mode: 774
        state: directory
     - name: copy centos.tomcat.service
       ansible.builtin.copy:
@@ -72,16 +72,19 @@
         dest: /opt/tomcat/latest/conf/tomcat-users.xml
         owner: "{{tomcat_user}}"
         group: "{{tomcat_group}}"
-    - name: copy the context.xml file 
-      ansible.builtin.copy:
-        src: hostmanager-context.xml
-        dest: "{{item}}"
+    - ansible.builtin.copy:
+        src: context.xml
+        dest: /opt/tomcat/latest/webapps/manager/META-INF/context.xml
         owner: "{{tomcat_user}}"
         group: "{{tomcat_group}}" 
         remote_src: true
-      loop:
-        - /opt/tomcat/latest/webapps/manager/META-INF/context.xml
-        - /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
+    - name: copy the context.xml file 
+      ansible.builtin.copy:
+        src: hostmanager-context.xml
+        dest: /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
+        owner: "{{tomcat_user}}"
+        group: "{{tomcat_group}}" 
+        remote_src: true
       notify:
         - restart tomcat
   handlers:
