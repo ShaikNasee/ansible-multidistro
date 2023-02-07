@@ -74,7 +74,7 @@
         group: "{{tomcat_group}}"
     - name: copy the context.xml file 
       ansible.builtin.copy:
-        src: host-manager-context.xml
+        src: hostmanager-context.xml
         dest: "{{item}}"
         owner: "{{tomcat_user}}"
         group: "{{tomcat_group}}" 
