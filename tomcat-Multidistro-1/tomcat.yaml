@@ -67,8 +67,8 @@
       notify:
         - reload deamon and start tomcat
     - name: copy the tomcat-user.xml file 
-      ansible.builtin.copy:
-        src: tomcat-users.xml
+      ansible.builtin.template:
+        src: tomcat-users.xml.j2
         dest: /opt/tomcat/latest/conf/tomcat-users.xml
         owner: "{{tomcat_user}}"
         group: "{{tomcat_group}}"
@@ -89,11 +89,11 @@
         name: "{{ tomcat_service}}"
         daemon_reload: true
         enabled: true
-        state: started
-    - name: restart tomcat 
+        state: restarted
+    - name: start tomcat 
       ansible.builtin.systemd:
         name: "{{tomcat_service}}"
-        state: restarted
+        state: started
 
 
 

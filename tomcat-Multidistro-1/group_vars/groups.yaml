@@ -1,0 +1,10 @@
+---
+tomcat_user: tomcat
+tomcat_group: tomcat
+tomcat_shell: /bin/false
+tomcat_home: /opt/tomcat
+tomcat_service: tomcat.service
+tomcat_version: "10.0.27"
+major_version: "10"
+tomcat_mgmt_user: admin
+tomcat_mgmt_passwd: admin123
