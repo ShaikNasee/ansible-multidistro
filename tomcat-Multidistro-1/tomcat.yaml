@@ -1,6 +1,6 @@
 ---
 - name: installing tomcat 10 on ubuntu server 22.0
-  hosts: appserver
+  hosts: all
   become: yes    
   tasks:
     - name: install java 11 on ubuntu
