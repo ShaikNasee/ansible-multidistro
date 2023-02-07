@@ -78,6 +78,7 @@
         dest: "{{item}}"
         owner: "{{tomcat_user}}"
         group: "{{tomcat_group}}" 
+        remote_src: true
       loop:
         - /opt/tomcat/latest/webapps/manager/META-INF/context.xml
         - /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
