@@ -51,19 +51,11 @@
        mode: 774
        state: directory
     - name: copy centos.tomcat.service
-      ansible.builtin.copy:
-        src: centos.tomcat.service
+      ansible.builtin.template:
+        src: tomcat.service.j2
         dest: /etc/systemd/system/tomcat.service
         owner: "{{ tomcat_user }}"
         group: "{{ tomcat_group }}"
-      when: ansible_facts['distribution'] == "CentOS"
-    - name: copy ubuntu.tomcat.service
-      ansible.builtin.copy:
-        src: ubuntu.tomcat.service
-        dest: /etc/systemd/system/tomcat.service
-        owner: "{{ tomcat_user }}"
-        group: "{{ tomcat_group }}"
-      when: ansible_facts['distribution'] == "Ubuntu"
       notify:
         - reload deamon and start tomcat
     - name: copy the tomcat-user.xml file 
