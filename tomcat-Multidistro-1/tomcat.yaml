@@ -75,12 +75,15 @@
     - name: copy the context.xml file 
       ansible.builtin.copy:
         src: context.xml
-        dest: "{{ item}}"
+        dest: /opt/tomcat/latest/webapps/manager/META-INF/context.xml
         owner: "{{tomcat_user}}"
         group: "{{ tomcat_group}}"
-      loop:
-        - /opt/tomcat/latest/webapps/manager/META-INF/context.xml 
-        - /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml 
+    - name: copy the context.xml file 
+      ansible.builtin.copy:
+        src: context.xml
+        dest: /opt/tomcat/latest/webapps/host-manager/META-INF/context.xml
+        owner: "{{tomcat_user}}"
+        group: "{{ tomcat_group}}"
       notify:
         - restart tomcat
   handlers:
@@ -94,6 +97,7 @@
       ansible.builtin.systemd:
         name: "{{tomcat_service}}"
         state: started
+
 
 
 
